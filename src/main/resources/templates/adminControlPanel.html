@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Better than your favorite booking site - Your Hotels</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="/style.css" />        
+    </head>
+
+    <body>
+        <section class="header">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-dark navbar-row pt-2">
+                    <a class="navbar-brand" th:href="@{/}">
+                        <img src="/bb-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <form th:action="@{/logout}" method="POST">
+                        <input type="submit" class="btn btn-secondary" value="Logout">
+                    </form>
+                </nav>
+            </div>
+        </section>
+        <section class="container" width="100%">
+            <br />
+            <div>                
+                <a class="btn btn-success" th:href="@{/admin/add}" style="float: right">
+                    Add New Hotel
+                </a>
+                <h1>Your Hotel Information</h1>
+            </div>
+            <hr>
+            <div class="col-auto" style="padding: 0;">
+                <div class="table table-responsive">
+                    <table id="tbl-hotel"  class="table table-bordered" cellpadding="0" width="100%">
+                        <thead class="col-12">
+                            <tr>
+                                <th class="col-2">Thumbnail</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Location</th>                               
+                                <th class="col-2">Total Rooms</th>
+                                <th class="col-1"></th>
+                                <th class="col-1"></th>
+                            </tr>
+                        <tbody>   
+                            <tr th:each="hotel: ${hotels}">
+                                <td><img th:src="${hotel.thumbnail}" style="width: 100%"></td>
+                                <td th:text="${hotel.name}"></td>
+                                <td th:text="${hotel.description}"></td>
+                                <td th:text="${hotel.location}"></td>
+                                <td th:text="${hotel.totalRooms}"></td>   
+                                <td><a th:href="@{'/admin/update/'+${hotel.hotel_id}}" class="btn btn-primary">Edit</a></td>
+                                <td><a th:href="@{'/admin/delete/'+${hotel.hotel_id}}" 
+                                       onclick="return confirm('Are you sure?')"class="btn btn-danger">Delete</a></td>
+                            </tr> 
+                            </tr>
+                        </tbody> 
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <section>
+            <br><br><br><br>
+        </section>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    </body>
+
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+        <title>Better than your favorite booking site</title>
+
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+            crossorigin="anonymous"
+            />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+            />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" href="background_img.css">
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <form class="search-form js-form" action="/search" method="GET">
+            <section class="header">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-dark navbar-row pt-2">
+                        <a th:href="@{/}" class="navbar-brand">
+                            <img src="/bb-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">About us</a>
+                                </li>                
+                            </ul>              
+                        </div>
+                        <i><a th:href="@{/register}" class="btn btn-success glyphicon glyphicon-share" id="signin">Login / Register</a></i>
+                    </nav>
+                    <div class="form-row search-row pt-2">
+                        <div class="col-10">
+                            <div class="form-group">
+                                <label class="sr-only" for="search-bar">Search</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text js-search-bar">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        class="form-control js-autocomplete"
+                                        id="search-bar"
+                                        name="location"
+                                        placeholder="Search location"
+                                        autocomplete="off"
+                                        />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-block search-button js-btn"
+                                >
+                                Search
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-row date-room">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <div class="input-group date datetimepicker">
+                                    <input
+                                        type="text"
+                                        class="form-control check-in"
+                                        placeholder="check-in"
+                                        />
+                                    <div class="input-group-addon input-group-prepend">
+                                        <span class="input-group-text"
+                                              ><i class="fas fa-calendar"></i
+                                            ></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                <div class="input-group date datetimepicker">
+                                    <input
+                                        type="text"
+                                        class="form-control check-out"
+                                        placeholder="check-out"
+                                        />
+                                    <div class="input-group-addon input-group-prepend">
+                                        <span class="input-group-text"
+                                              ><i class="fas fa-calendar"></i
+                                            ></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <select class="custom-select js-roomtype" id="roomtype">
+                                <option value="all" selected>All</option>
+                                <option value="Single">Single</option>
+                                <option value="Double">Double</option>
+                                <option value="Family Room">Family Room</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row range-type-rating">
+                        <div class="col-4 price-slider">
+                            <div class="form-group">
+                                <div>
+                                    <label for="formControlRange">Price</label>
+                                    <div class="float-right">
+                                        max. <i class="fas fa-euro-sign fa-xs"> &nbsp;</i
+                                        ><span class="js-slider-value"></span>
+                                    </div>
+                                </div>
+                                <input
+                                    type="range"
+                                    min="1"
+                                    class="form-control-range js-price-slider"
+                                    id="formControlRange"
+                                    />
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Property type</label>
+                                <select
+                                    class="form-control js-rating-stars"
+                                    id="exampleFormControlSelect1"
+                                    name="stars"
+                                    >
+                                    <option value="0" selected>All</option>
+                                    <option value="1">1 Star</option>
+                                    <option value="2">2 Stars</option>
+                                    <option value="3">3 Stars</option>
+                                    <option value="4">4 Stars</option>
+                                    <option value="5">5 Stars</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect2">Guest Rating</label>
+                                <select
+                                    class="form-control js-guest-rating"
+                                    id="exampleFormControlSelect2"
+                                    name="rating"
+                                    >
+                                    <option value="0" selected>All</option>
+                                    <option value="1">0-2 Okay</option>
+                                    <option value="2">2-6 Fair</option>
+                                    <option value="6">6-7 Good</option>
+                                    <option value="7">7-8 Very Good</option>
+                                    <option value="8">8-10 Excellent</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                            <label for="hotel-location">Hotel location</label>
+                            <select
+                                class="custom-select js-hotel-location"
+                                id="hotel-location"
+                                >
+                                <option id="hotel-location-selected" selected>All</option>
+                            </select>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect3">More Filters</label>
+                                <select class="form-control" id="exampleFormControlSelect3">
+                                    <option>All</option>
+                                    <option>Room service</option>
+                                    <option>Restaurant</option>
+                                    <option>WiFi</option>
+                                    <option>Swimming pool</option>
+                                    <option>Private bathroom</option>
+                                    <option>Air conditioning</option>
+                                    <option>Kitchen</option>
+                                    <option>Balcony</option>
+                                    <option>Parking</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content">
+                <div class="container">
+                    <div class="form-row pt-2">
+                        <div class="col-3 pb-2 img-wrapper" id="map">
+                            <img
+                                class="img-responsive"
+                                alt="img-map"
+                                style="
+                                width: 100%;
+                                height: 40px;
+                                object-position: 50% 50%;
+                                object-fit: fill;
+                                "
+                                src="map.PNG"
+                                />
+                            <div class="img-overlay">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-dark btn-sm"
+                                    data-toggle="modal"
+                                    data-target="#myModal"
+                                    >
+                                    View Map
+                                </button>
+                            </div>
+
+                            <div class="modal" id="myModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Navigate & Explore</h4>
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                &times;
+                                            </button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <iframe
+                                                class="iframe"
+                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3213812.280040094!2d22.238772588169677!3d38.12883139641341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135b4ac711716c63%3A0x363a1775dc9a2d1d!2zzpXOu867zqzOtM6x!5e0!3m2!1sel!2sgr!4v1630751244265!5m2!1sel!2sgr"
+                                                allowfullscreen
+                                                ></iframe>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button
+                                                type="button"
+                                                class="btn btn-danger"
+                                                data-dismiss="modal"
+                                                >
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-3" id="space"></div>
+
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <label for="sort-by" class="col-4 col-form-label"
+                                       >Sort by :</label
+                                >
+
+                                <div class="col-8">
+                                    <select class="form-control js-sort" id="sort-by">
+                                        <option value="All">Our recommendations</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+
+        <section class="results" id="main-container">
+                <div class="container js-search-results" id="search-results"></div>
+                <div class="container">
+                    <div class="row">
+                        <!--TABLE-->
+                        <div class="col-md-12">
+
+                            <div class="panel-body">
+                                <div class="form-row hotel shadow pb-2 mb-2 bg-white rounded" th:each="hotel: ${hotels}">
+                                    <div class="col-3" style="background-color:white;">
+                                        <img th:src="${hotel.thumbnail}" alt="hotel-img" style="width:100%; height:200px; object-position: 50% 50%; object-fit: fill;">
+                                    </div>
+                                    <div class="col-5 border-right bg-white">
+                                        <h4 th:text="${hotel.name}"></h4>
+                                        <p><span class="stars"></span>&nbsp;Hotel</p>
+                                        <p th:text="${hotel.location}"></p>
+                                        <p><div class="d-inline text-white bg-success p-2" th:text="${hotel.user_rating}"></div></p>
+                                        <p>Excellent location</p>
+                                    </div>
+                                    <div class="col-4 border-left d-flex flex-column justify-content-center align-items-center bg-white">
+                                        <div class="h6 text-success">Hotel website</div>
+                                        <div class="h3 text-success" th:inline="text"><strong> [[${hotel.rooms[0].price}]] <i class="fas fa-euro-sign"></i></strong></div>
+                                        <div class="h6">3 nights for <strong> <span class="text-success">Price <i class="fas fa-euro-sign">  </span></i></strong></div>
+                                        <a th:href="@{'/reservation/'+${hotel.hotel_id}}" style="text-decoration: none; color: white;">
+                                            <button type="button" class="btn btn btn-success btn-md pb-1 position-absolute cta-btn">
+                                            View Deal <i class="fas fa-angle-right"></i></a>
+                                        </button>                            
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </section>
+
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+            crossorigin="anonymous"
+        ></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+        <script src="bootstrap-datetimepicker.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>

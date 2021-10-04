@@ -1,0 +1,136 @@
+body {
+  background-color: #EBECEE;
+  color: #37464D;
+}
+
+.header {
+  background-color: #37464D;
+  color: rgb(255, 255, 255);
+}
+
+.header .search-row .input-group-text {
+  background-color: #FFFFFF;
+}
+.header .search-row .form-control {
+  border-color: #FFFFFF;
+}
+
+#search-bar[type="text"]:focus:not([readonly]) {
+  border-bottom: 1px solid #0084A5;
+  box-shadow: 0 1px 0 0 #0084A5;
+}
+
+.search-button {
+  background-color: #0084A5;
+  color: white;
+}
+
+#basic-text1 {
+  background-color: white;
+}
+
+.form-control.check-in {
+  border-left: solid #0084A5 7px;
+}
+
+.form-control.check-out {
+  border-left: solid #e49b1d 7px;
+}
+
+.custom-select.js-hotel-location {
+  background: #37464D url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='white' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px !important;
+}
+
+#exampleFormControlSelect1, #exampleFormControlSelect2, #exampleFormControlSelect3, #hotel-location {
+  background-color: #37464D;
+  border-color: #37464D;
+  color: rgb(255, 255, 255);
+}
+
+.col-4.col-form-label {
+  text-align: right;
+}
+
+.ui-autocomplete {
+  position: absolute;
+  z-index: 1000;
+  cursor: default;
+  padding: 0;
+  margin-top: 2px;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.ui-autocomplete > li {
+  padding: 3px 20px;
+}
+.ui-autocomplete > li.ui-state-focus {
+  background-color: rgb(255, 255, 255);
+}
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+.fas.fa-star {
+  color: lightslategrey;
+}
+
+.fas.fa-star.checked {
+  color: #F4B238;
+}
+
+.btn-outline-primary, .btn-outline-secondary, .btn-outline-dark, .btn-outline-success {
+  border: none;
+}
+
+.cta-btn {
+  bottom: 0;
+  left: 5px;
+  width: calc(100% - 10px);
+}
+
+.cta-btn i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.iframe-container{
+  line-height: 0;
+}
+
+#info-circle {
+  background-color: transparent;
+  border: none;
+  padding-right: 0em;
+}
+
+.img-wrapper {
+  position: relative;
+ }
+
+.img-overlay {
+  position: absolute;
+  top: 10%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.img-overlay:before {
+  content: ' ';
+  display: block;
+}
+
+.iframe {
+  width:100%;
+  height:450px;
+  border:0;
+}

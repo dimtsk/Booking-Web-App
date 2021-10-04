@@ -1,0 +1,107 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Better than your favorite booking site - Edit Hotel</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+        <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+        <section class="header">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-dark navbar-row pt-2">
+                    <a class="navbar-brand" th:href="@{/}">
+                        <img src="/bb-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <form th:action="@{/logout}" method="POST">
+                        <input type="submit" class="btn btn-secondary" value="Logout">
+                    </form>
+                </nav>
+            </div>
+        </section>
+        <section class="container">
+            <br />
+            <a class="btn btn-primary" th:href="@{/admin/myhotels}" style="float: right">
+                Back
+            </a>
+            <h1>Edit Hotel</h1>
+            <hr>
+            <form th:action="@{'/admin/saved/'+${hotel.hotel_id}}" method="POST" th:object="${hotel}">
+                <h3>Hotel Information</h3>
+                <div class="form-row">
+                    <div class="form-group col-9">
+                        <form id="newHotel" class="input-group">
+                            <div class="row">
+                                <label for="hotelName" class="col-sm-3 col-form-label">Name:</label>
+                                <input type="text" class="col-sm-9 input-field" id="hotelName" placeholder="Name"
+                                       th:field="*{name}" minlength="2" maxlength="20" required>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <label for="hotelThumbnail" class="col-sm-3 col-form-label">Thumbnail URL:</label>
+                                <input type="text" class="col-sm-9 input-field" id="hotelThumbnail" placeholder="Thumbnail"
+                                       th:field="*{thumbnail}" required>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <label for="hotelLocation" class="col-sm-3 col-form-label">Location:</label>
+                                <input type="text" class="col-sm-9 input-field" id="hotelLocation" placeholder="Location"
+                                       th:field="*{location}" required>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <label for="availableRooms" class="col-sm-3 col-form-label">Available Rooms:</label>
+                                <input type="number" class="col-sm-3 input-field" id="availableRooms"
+                                       placeholder="Available rooms" th:field="*{availableRooms}" min="0" required>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <label for="totalRooms" class="col-sm-3 col-form-label">Total Rooms:</label>
+                                <input type="number" class="col-sm-3 input-field" id="totalRooms" placeholder="Total rooms"
+                                       th:field="*{totalRooms}" min="1" required>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <label for="hotelDescription" class="col-sm-3 col-form-label">Description:</label>
+                                <textarea rows="5" type="text" class="col-sm-9 input-fieldt" id="hotelDescription"
+                                          placeholder="Description" th:field="*{description}" minlength="20" maxlength="299"
+                                          required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                Save changes <i class="fas fa-angle-right"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <br>
+
+            </form>
+        </div>
+    </section>
+    <section>
+        <br><br><br><br>
+    </section>
+</body>
+</html>

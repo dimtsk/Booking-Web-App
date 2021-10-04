@@ -1,0 +1,45 @@
+/* body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+} */
+
+#main-container{
+    height: 100vh;
+    width: 100%;
+    background-image: url("https://wallpapercave.com/wp/wp1846068.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 5s;
+
+    animation-name: animate;
+    animation-direction: alternate-reverse;
+    animation-duration: 30s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes animate{
+    0%{
+        background-image: url("https://wallpapercave.com/wp/wp1846068.jpg");
+    }
+    20%{
+        background-image: url("https://wallup.net/wp-content/uploads/2019/09/07/340065-nature-summer-maldives-hotels.jpg");
+    }
+    40%{
+        background-image: url("https://cdn.wallpapersafari.com/47/98/GP1K73.jpg");
+    }
+    60%{
+        background-image: url("https://images.wallpaperscraft.com/image/resort_hotel_pool_relaxation_luxury_palm_trees_110912_1920x1080.jpg");
+    }
+    80%{
+        background-image: url("https://uploads.montagehotels.com/uploads/2020/04/03135805/MLC-Casa-Twin-Dolphin-Terrace.jpg");
+    }
+    100%{
+        background-image: url("https://uploads.montagehotels.com/uploads/2020/04/03135810/MLC-Terrace.jpg");
+    }
+}    

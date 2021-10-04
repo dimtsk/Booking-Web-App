@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <title>Login Form</title>
+    <link href="/register_login_form.css" rel="stylesheet" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-box">
+        <!--BUTTON OPTIONS-->
+        <div class="button-box">
+          <div id="btn"></div>
+          <button type="button" class="toggle-btn" onclick="login()">
+            Log In
+          </button>
+          <button type="button" class="toggle-btn" onclick="register()">
+            Register
+          </button>
+        </div>
+        <!--SOCIAL MEDIA LINK ICONS-->
+        <div class="social-icons">
+          <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-google"></a>
+        </div>
+        <!--E-MAIL VALIDATION OUTPUT-->
+
+        <!--LOG IN FORM-->
+        <form
+          id="login"
+          class="input-group"
+          th:action="@{/perform_login}"
+          method="POST"
+        >
+          <input
+            type="email"
+            name="username"
+            class="input-field"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            class="input-field"
+            placeholder="Password"
+            required
+          />
+          <input type="checkbox" class="check-box" /><span
+            >Remember Password</span
+          >
+          <button type="submit" class="submit-btn">Log In</button>
+        </form>
+        <!--REGISTRATION FORM-->
+        <div id="msg"></div>
+        <form
+          id="register"
+          class="input-group"
+          th:action="@{/process/registration}"
+          method="POST"
+          th:object="${user}"
+        >
+          <input
+            type="text"
+            class="input-field"
+            placeholder="Firstname"
+            th:field="*{firstname}"
+            minlength="2"
+            maxlength="20"
+            required
+          />
+          <input
+            type="text"
+            class="input-field"
+            placeholder="Lastname"
+            th:field="*{lastname}"
+            minlength="2"
+            maxlength="20"
+            required
+          />
+          <input
+            type="email"
+            class="input-field"
+            placeholder="Email"
+            th:field="*{email}"
+            id="email"
+            required
+          />
+
+          <input
+            type="password"
+            class="input-field"
+            placeholder="Password"
+            th:field="*{password}"
+            minlength="6"
+            maxlength="10"
+            required
+          />
+          <input type="checkbox" class="check-box" required />
+          <span>I agree to the terms</span>
+          <button type="submit" class="submit-btn">Register</button>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="text/javascript">
+      var token = $("meta[name='_csrf']").attr("content");
+      var header = $("meta[name='_csrf_header']").attr("content");
+      $(document).ready(function () {
+        $("#email").focusout(function (e) {
+          $("#msg").hide();
+          if ($("#email").val() == null || $("#email").val() == "") {
+            $("#msg").show();
+            $("#msg").html("E-mail is a required field.").css("color", "red");
+          } else {
+            $(document).ajaxSend(function (e, xhr, options) {
+              xhr.setRequestHeader(header, token);
+            });
+            $.ajax({
+              type: "post",
+              url: "/email",
+              data: JSON.stringify({ email: $("#email").val() }),
+              contentType: "application/json; charset=utf-8",
+              //dataType: 'html',
+              cache: false,
+              beforeSend: function (f) {
+                $("#msg").show();
+                $("#msg").html("Checking...");
+              },
+              statusCode: {
+                500: function (xhr) {
+                  $("#msg").show();
+                  $("#msg").html("E-mail available").css("color", "green");
+                },
+              },
+              success: function (msg) {
+                $("#msg").show();
+                if (msg !== null || msg !== "") {
+                  $("#msg").html("E-mail already taken").css("color", "red");
+                } else {
+                  $("#msg").html("E-mail available").css("color", "green");
+                }
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                $("#msg").show();
+                $("#msg")
+                  .html(textStatus + " " + errorThrown)
+                  .css("color", "red");
+              },
+            });
+          }
+        });
+      });
+    </script>
+
+    <script>
+      var l = document.getElementById("login");
+      var r = document.getElementById("register");
+      var b = document.getElementById("btn");
+      // LOGIN-->REGISTER
+      function register() {
+        l.style.left = "-400px";
+        r.style.left = "50px";
+        b.style.left = "110px";
+      }
+      // REGISTER-->LOGIN
+      function login() {
+        l.style.left = "50px";
+        r.style.left = "450px";
+        b.style.left = "0px";
+        $("#msg").hide();
+      }
+    </script>
+  </body>
+</html>

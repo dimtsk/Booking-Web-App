@@ -1,7 +1,8 @@
-# Booking-Web-App <hr>
+# Booking-Web-App 
+<hr>
 <h3>A Web Application service where a user can get a hotel.</h3>
 
-#Technical description: <hr>
+<h3>Technical description: </h3><hr>
 
 <h3>Java Spring boot project: </h3>
 Spring JPA - Security - MVC
@@ -15,7 +16,7 @@ MySQL
 <h3>External Libraries:</h3>
 ngx-paypal 
 
-#Java Roles: <hr>
+<h3>Java Roles: <h3><hr>
 
 By registering to the Booking web app the user has the role USER. The USER has only access to the view of the hotels and can make a reservation and proceed to the payment.
 We also have a second role, which is the ADMIN. The ADMIN can access and edit only the hotels that he owns. Can also add and delete a hotel from the list or update the details 
@@ -73,7 +74,7 @@ of his hotels.
 
 ![Screenshot_5](https://user-images.githubusercontent.com/79996911/136165654-9d629556-1800-467b-8550-30753e242b51.png)
 
-#Contributors:<hr>
+  <h3>Contributors:</h3><hr>
 
 <h3>Christos Kontosis</h3>
 

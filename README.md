@@ -18,9 +18,9 @@ ngx-paypal
 
 <h3>Java Roles: <h3><hr>
 
-By registering to the Booking web app the user has the role USER. The USER has only access to the view of the hotels and can make a reservation and proceed to the payment.
+<h5>By registering to the Booking web app the user has the role USER. The USER has only access to the view of the hotels and can make a reservation and proceed to the payment.
 We also have a second role, which is the ADMIN. The ADMIN can access and edit only the hotels that he owns. Can also add and delete a hotel from the list or update the details 
-of his hotels.
+  of his hotels.</h5>
 
 <h3>UNREGISTERED:</h3>
 
@@ -38,7 +38,7 @@ of his hotels.
 <li> can see details about the hotels he owns</li>
 <li> can add, delete or update the list with the hotels he owns</li>
 
-#Screenshots: <hr>
+  <h3>Screenshots: </h3><hr>
 
 <h3>Main Page:</h3>
 

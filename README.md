@@ -4,8 +4,8 @@
 
 <h3>Technical description: </h3><hr>
 
-<h3>Java Spring boot project: </h3>
-Spring JPA - Security - MVC
+<h3>Back-end framework: </h3>
+Java Spring boot project: Spring JPA - Security - MVC
 
 <h3>Front-end framework:</h3>
 HTML5 - CSS - Javascript
